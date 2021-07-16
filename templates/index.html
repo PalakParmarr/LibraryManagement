@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+    <br>
+    <div class="container text-center">
+            <h1>Library</h1>
+        
+        <div class="col-sm-10">
+            <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-table text-primary"></i>
+                            All Books
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th >id</th>
+                                    <th >Name</th>
+                                    <th >Author name</th>
+                                    <th ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for b in object_list %}
+                                    <tr>
+                                    <th>{{b.id}}</th>
+                                    <th><a href="{% url 'book_detail' b.pk %}">{{b.book_name}}</a></th>
+                                    <th> {{b.author_name}}</th>
+                                    <th><button class= "btn btn-primary">Available</button></th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            </table>
+                        </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

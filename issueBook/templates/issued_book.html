@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+  <h1> Issued Book </h1>
+  {% if userissuing_list %}
+    {% for b in object_list %}
+      <li class="{% if b.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book_detail' b.book.pk %}">{{b.book_name}}</a> ({{ b.issuing_date }})        
+      </li>                    
+    {% endfor %}
+  {% else %}
+    <p>There are no books borrowed.</p>
+  {% endif %}       
+{% endblock %}
