@@ -4,16 +4,22 @@
     Hello, {{ user.username }}
     <br>
     <div class= "container"> 
+    {% if userissuing_list %}
+    {% for b in userissuing_list %}
+      
+        <a href="">{{b.book_name}}</a> ({{ b.issuing_date }})  
+          
+      </li>                    
+    {% endfor %}
+  {% else %}
+    <p>There are no books borrowed.</p>
+  {% endif %}   
 
-        <a href="{% url 'index' %}">Read Book</a>
-    
+ 
     </div>
 
+   
 <div>
-    {% if user.is_authenticated %}
-        
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+    
 </div>
 {% endblock %}

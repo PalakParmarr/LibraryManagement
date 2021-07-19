@@ -1,9 +1,11 @@
-from django.shortcuts import render
+
+from issueBook.models import UserIssuing
 from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.list import ListView
 from .forms import UserRegisterForm
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+
 
 # Create your views here
 
@@ -14,6 +16,13 @@ class RegisterV(CreateView):
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
 
-@login_required
-def dashboard(request):
-    return render(request, "registration/dashboard.html")
+
+class Dashboard(ListView):
+    model = UserIssuing
+    template_name = 'registration/dashboard.html'
+    
+
+    def get_queryset(self):
+        
+        # import code; code.interact(local=locals())
+        return UserIssuing.objects.filter(name=self.request.user)

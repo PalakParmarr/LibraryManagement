@@ -7,8 +7,13 @@ By:
 {{ book.author_name }} <br>
 {{book.file}}
 <br><br>
- 
-<a href="" class= "btn btn-danger">Issue</a>
-
+{% if user.is_authenticated %}
+   
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-secondary" >Issue</button>
+</form> 
+{% endif %}
 
 {% endblock %}
